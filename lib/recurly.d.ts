@@ -4647,7 +4647,7 @@ export declare class Client {
    * }
    * 
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -4659,13 +4659,13 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.state - Filter by state.
+   * @param options.params.state - Filter by state.
    * @return {Pager<Site>} A list of sites.
    */
   listSites(params?: object): Pager<Site>;
@@ -4707,7 +4707,7 @@ export declare class Client {
    * }
    * 
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -4719,23 +4719,23 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.email - Filter for accounts with this exact email address. A blank value will return accounts with both `null` and `""` email addresses. Note that multiple accounts can share one email address.
-   * @param params.subscriber - Filter for accounts with or without a subscription in the `active`,
+   * @param options.params.email - Filter for accounts with this exact email address. A blank value will return accounts with both `null` and `""` email addresses. Note that multiple accounts can share one email address.
+   * @param options.params.subscriber - Filter for accounts with or without a subscription in the `active`,
    *   `canceled`, or `future` state.
    *   
-   * @param params.pastDue - Filter for accounts with an invoice in the `past_due` state.
+   * @param options.params.pastDue - Filter for accounts with an invoice in the `past_due` state.
    * @return {Pager<Account>} A list of the site's accounts.
    */
   listAccounts(params?: object): Pager<Account>;
@@ -5079,7 +5079,7 @@ export declare class Client {
    * 
    * @param accountId - Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -5091,14 +5091,14 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
    * @return {Pager<CouponRedemption>} A list of the the coupon redemptions on an account.
@@ -5179,16 +5179,16 @@ export declare class Client {
    * 
    * @param accountId - Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
    * @return {Pager<CreditPayment>} A list of the account's credit payments.
@@ -5208,7 +5208,7 @@ export declare class Client {
    * 
    * @param accountId - Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -5220,19 +5220,19 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.type - Filter by type when:
+   * @param options.params.type - Filter by type when:
    *   - `type=charge`, only charge invoices will be returned.
    *   - `type=credit`, only credit invoices will be returned.
    *   - `type=non-legacy`, only charge and credit invoices will be returned.
@@ -5319,7 +5319,7 @@ export declare class Client {
    * 
    * @param accountId - Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -5331,21 +5331,21 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.original - Filter by original field.
-   * @param params.state - Filter by state field.
-   * @param params.type - Filter by type field.
+   * @param options.params.original - Filter by original field.
+   * @param options.params.state - Filter by state field.
+   * @param options.params.type - Filter by type field.
    * @return {Pager<LineItem>} A list of the account's line items.
    */
   listAccountLineItems(accountId: string, params?: object): Pager<LineItem>;
@@ -5394,7 +5394,7 @@ export declare class Client {
    * 
    * @param accountId - Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -5450,7 +5450,7 @@ export declare class Client {
    * 
    * @param accountId - Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -5462,16 +5462,16 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
    * @return {Pager<ShippingAddress>} A list of an account's shipping addresses.
@@ -5609,7 +5609,7 @@ export declare class Client {
    * 
    * @param accountId - Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -5621,19 +5621,19 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.state - Filter by state.
+   * @param options.params.state - Filter by state.
    *   
    *   - When `state=active`, `state=canceled`, `state=expired`, or `state=future`, subscriptions with states that match the query and only those subscriptions will be returned.
    *   - When `state=in_trial`, only subscriptions that have a trial_started_at date earlier than now and a trial_ends_at date later than now will be returned.
@@ -5656,7 +5656,7 @@ export declare class Client {
    * 
    * @param accountId - Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -5668,20 +5668,20 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.type - Filter by type field. The value `payment` will return both `purchase` and `capture` transactions.
-   * @param params.success - Filter by success field.
+   * @param options.params.type - Filter by type field. The value `payment` will return both `purchase` and `capture` transactions.
+   * @param options.params.success - Filter by success field.
    * @return {Pager<Transaction>} A list of the account's transactions.
    */
   listAccountTransactions(accountId: string, params?: object): Pager<Transaction>;
@@ -5693,7 +5693,7 @@ export declare class Client {
    * 
    * @param accountId - Account ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-bob`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -5705,23 +5705,23 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.email - Filter for accounts with this exact email address. A blank value will return accounts with both `null` and `""` email addresses. Note that multiple accounts can share one email address.
-   * @param params.subscriber - Filter for accounts with or without a subscription in the `active`,
+   * @param options.params.email - Filter for accounts with this exact email address. A blank value will return accounts with both `null` and `""` email addresses. Note that multiple accounts can share one email address.
+   * @param options.params.subscriber - Filter for accounts with or without a subscription in the `active`,
    *   `canceled`, or `future` state.
    *   
-   * @param params.pastDue - Filter for accounts with an invoice in the `past_due` state.
+   * @param options.params.pastDue - Filter for accounts with an invoice in the `past_due` state.
    * @return {Pager<Account>} A list of an account's child accounts.
    */
   listChildAccounts(accountId: string, params?: object): Pager<Account>;
@@ -5738,7 +5738,7 @@ export declare class Client {
    * }
    * 
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -5750,16 +5750,16 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
    * @return {Pager<AccountAcquisition>} A list of the site's account acquisition data.
@@ -5778,7 +5778,7 @@ export declare class Client {
    * }
    * 
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -5790,16 +5790,16 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
    * @return {Pager<Coupon>} A list of the site's coupons.
@@ -5934,7 +5934,7 @@ export declare class Client {
    * 
    * @param couponId - Coupon ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-10off`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -5946,16 +5946,16 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
    * @return {Pager<UniqueCouponCode>} A list of unique coupon codes that were generated
@@ -5974,16 +5974,16 @@ export declare class Client {
    * }
    * 
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
    * @return {Pager<CreditPayment>} A list of the site's credit payments.
@@ -6012,7 +6012,7 @@ export declare class Client {
    * }
    * 
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -6024,19 +6024,19 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.relatedType - Filter by related type.
+   * @param options.params.relatedType - Filter by related type.
    * @return {Pager<CustomFieldDefinition>} A list of the site's custom field definitions.
    */
   listCustomFieldDefinitions(params?: object): Pager<CustomFieldDefinition>;
@@ -6078,7 +6078,7 @@ export declare class Client {
    * }
    * 
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -6090,19 +6090,19 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.state - Filter by state.
+   * @param options.params.state - Filter by state.
    * @return {Pager<Item>} A list of the site's items.
    */
   listItems(params?: object): Pager<Item>;
@@ -6253,7 +6253,7 @@ export declare class Client {
    *
    * 
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -6265,19 +6265,19 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.state - Filter by state.
+   * @param options.params.state - Filter by state.
    * @return {Pager<MeasuredUnit>} A list of the site's measured units.
    */
   listMeasuredUnit(params?: object): Pager<MeasuredUnit>;
@@ -6335,7 +6335,7 @@ export declare class Client {
    * }
    * 
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -6347,19 +6347,19 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.type - Filter by type when:
+   * @param options.params.type - Filter by type when:
    *   - `type=charge`, only charge invoices will be returned.
    *   - `type=credit`, only credit invoices will be returned.
    *   - `type=non-legacy`, only charge and credit invoices will be returned.
@@ -6481,7 +6481,7 @@ export declare class Client {
    * 
    * @param invoiceId - Invoice ID or number. For ID no prefix is used e.g. `e28zov4fw0v2`. For number use prefix `number-`, e.g. `number-1000`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.body - The object representing the JSON request to send to the server. It should conform to the schema of {InvoiceCollect}
+   * @param options.params.body - The object representing the JSON request to send to the server. It should conform to the schema of {InvoiceCollect}
    * @return {Promise<Invoice>} The updated invoice.
    */
   collectInvoice(invoiceId: string, params?: object): Promise<Invoice>;
@@ -6631,7 +6631,7 @@ export declare class Client {
    * 
    * @param invoiceId - Invoice ID or number. For ID no prefix is used e.g. `e28zov4fw0v2`. For number use prefix `number-`, e.g. `number-1000`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -6643,21 +6643,21 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.original - Filter by original field.
-   * @param params.state - Filter by state field.
-   * @param params.type - Filter by type field.
+   * @param options.params.original - Filter by original field.
+   * @param options.params.state - Filter by state field.
+   * @param options.params.type - Filter by type field.
    * @return {Pager<LineItem>} A list of the invoice's line items.
    */
   listInvoiceLineItems(invoiceId: string, params?: object): Pager<LineItem>;
@@ -6675,7 +6675,7 @@ export declare class Client {
    * 
    * @param invoiceId - Invoice ID or number. For ID no prefix is used e.g. `e28zov4fw0v2`. For number use prefix `number-`, e.g. `number-1000`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -6687,14 +6687,14 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
    * @return {Pager<CouponRedemption>} A list of the the coupon redemptions associated with the invoice.
@@ -6762,7 +6762,7 @@ export declare class Client {
    * }
    * 
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -6774,21 +6774,21 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.original - Filter by original field.
-   * @param params.state - Filter by state field.
-   * @param params.type - Filter by type field.
+   * @param options.params.original - Filter by original field.
+   * @param options.params.state - Filter by state field.
+   * @param options.params.type - Filter by type field.
    * @return {Pager<LineItem>} A list of the site's line items.
    */
   listLineItems(params?: object): Pager<LineItem>;
@@ -6855,7 +6855,7 @@ export declare class Client {
    * }
    * 
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -6867,19 +6867,19 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.state - Filter by state.
+   * @param options.params.state - Filter by state.
    * @return {Pager<Plan>} A list of plans.
    */
   listPlans(params?: object): Pager<Plan>;
@@ -7011,7 +7011,7 @@ export declare class Client {
    * 
    * @param planId - Plan ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-gold`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -7023,19 +7023,19 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.state - Filter by state.
+   * @param options.params.state - Filter by state.
    * @return {Pager<AddOn>} A list of add-ons.
    */
   listPlanAddOns(planId: string, params?: object): Pager<AddOn>;
@@ -7172,7 +7172,7 @@ export declare class Client {
    * }
    * 
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -7184,19 +7184,19 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.state - Filter by state.
+   * @param options.params.state - Filter by state.
    * @return {Pager<AddOn>} A list of add-ons.
    */
   listAddOns(params?: object): Pager<AddOn>;
@@ -7238,7 +7238,7 @@ export declare class Client {
    * }
    * 
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -7250,16 +7250,16 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
    * @return {Pager<ShippingMethod>} A list of the site's shipping methods.
@@ -7319,7 +7319,7 @@ export declare class Client {
    * }
    * 
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -7331,19 +7331,19 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.state - Filter by state.
+   * @param options.params.state - Filter by state.
    *   
    *   - When `state=active`, `state=canceled`, `state=expired`, or `state=future`, subscriptions with states that match the query and only those subscriptions will be returned.
    *   - When `state=in_trial`, only subscriptions that have a trial_started_at date earlier than now and a trial_ends_at date later than now will be returned.
@@ -7463,7 +7463,7 @@ export declare class Client {
    * 
    * @param subscriptionId - Subscription ID or UUID. For ID no prefix is used e.g. `e28zov4fw0v2`. For UUID use prefix `uuid-`, e.g. `uuid-123457890`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.refund - The type of refund to perform:
+   * @param options.params.refund - The type of refund to perform:
    *   
    *   * `full` - Performs a full refund of the last invoice for the current subscription term.
    *   * `partial` - Prorates a refund based on the amount of time remaining in the current bill cycle.
@@ -7499,7 +7499,7 @@ export declare class Client {
    * 
    * @param subscriptionId - Subscription ID or UUID. For ID no prefix is used e.g. `e28zov4fw0v2`. For UUID use prefix `uuid-`, e.g. `uuid-123457890`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.body - The object representing the JSON request to send to the server. It should conform to the schema of {SubscriptionCancel}
+   * @param options.params.body - The object representing the JSON request to send to the server. It should conform to the schema of {SubscriptionCancel}
    * @return {Promise<Subscription>} A canceled or failed subscription.
    */
   cancelSubscription(subscriptionId: string, params?: object): Promise<Subscription>;
@@ -7699,7 +7699,7 @@ export declare class Client {
    * 
    * @param subscriptionId - Subscription ID or UUID. For ID no prefix is used e.g. `e28zov4fw0v2`. For UUID use prefix `uuid-`, e.g. `uuid-123457890`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -7711,19 +7711,19 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.type - Filter by type when:
+   * @param options.params.type - Filter by type when:
    *   - `type=charge`, only charge invoices will be returned.
    *   - `type=credit`, only credit invoices will be returned.
    *   - `type=non-legacy`, only charge and credit invoices will be returned.
@@ -7746,7 +7746,7 @@ export declare class Client {
    * 
    * @param subscriptionId - Subscription ID or UUID. For ID no prefix is used e.g. `e28zov4fw0v2`. For UUID use prefix `uuid-`, e.g. `uuid-123457890`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -7758,21 +7758,21 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.original - Filter by original field.
-   * @param params.state - Filter by state field.
-   * @param params.type - Filter by type field.
+   * @param options.params.original - Filter by original field.
+   * @param options.params.state - Filter by state field.
+   * @param options.params.type - Filter by type field.
    * @return {Pager<LineItem>} A list of the subscription's line items.
    */
   listSubscriptionLineItems(subscriptionId: string, params?: object): Pager<LineItem>;
@@ -7790,7 +7790,7 @@ export declare class Client {
    * 
    * @param subscriptionId - Subscription ID or UUID. For ID no prefix is used e.g. `e28zov4fw0v2`. For UUID use prefix `uuid-`, e.g. `uuid-123457890`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -7802,14 +7802,14 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
    * @return {Pager<CouponRedemption>} A list of the the coupon redemptions on a subscription.
@@ -7824,7 +7824,7 @@ export declare class Client {
    * @param subscriptionId - Subscription ID or UUID. For ID no prefix is used e.g. `e28zov4fw0v2`. For UUID use prefix `uuid-`, e.g. `uuid-123457890`.
    * @param addOnId - Add-on ID or code. For ID no prefix is used e.g. `e28zov4fw0v2`. For code use prefix `code-`, e.g. `code-gold`.
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -7836,19 +7836,19 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `usage_timestamp` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `usage_timestamp` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=usage_timestamp` or `sort=recorded_timestamp`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=usage_timestamp` or `sort=recorded_timestamp`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=usage_timestamp` or `sort=recorded_timestamp`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=usage_timestamp` or `sort=recorded_timestamp`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.billingStatus - Filter by usage record's billing status
+   * @param options.params.billingStatus - Filter by usage record's billing status
    * @return {Pager<Usage>} A list of the subscription add-on's usage records.
    */
   listUsage(subscriptionId: string, addOnId: string, params?: object): Pager<Usage>;
@@ -7908,7 +7908,7 @@ export declare class Client {
    * }
    * 
    * @param {Object} params - The optional url parameters for this request.
-   * @param params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
+   * @param options.params.ids - Filter results by their IDs. Up to 200 IDs can be passed at once using
    *   commas as separators, e.g. `ids=h1at4d57xlmy,gyqgg0d3v9n1,jrsm5b4yefg6`.
    *   
    *   **Important notes:**
@@ -7920,20 +7920,20 @@ export declare class Client {
    *   * Records are returned in an arbitrary order. Since results are all
    *     returned at once you can sort the records yourself.
    *   
-   * @param params.limit - Limit number of records 1-200.
-   * @param params.order - Sort order.
-   * @param params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
+   * @param options.params.limit - Limit number of records 1-200.
+   * @param options.params.order - Sort order.
+   * @param options.params.sort - Sort field. You *really* only want to sort by `updated_at` in ascending
    *   order. In descending order updated records will move behind the cursor and could
    *   prevent some records from being returned.
    *   
-   * @param params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.beginTime - Inclusively filter by begin_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
+   * @param options.params.endTime - Inclusively filter by end_time when `sort=created_at` or `sort=updated_at`.
    *   **Note:** this value is an ISO8601 timestamp. A partial timestamp that does not include a time zone will default to UTC.
    *   
-   * @param params.type - Filter by type field. The value `payment` will return both `purchase` and `capture` transactions.
-   * @param params.success - Filter by success field.
+   * @param options.params.type - Filter by type field. The value `payment` will return both `purchase` and `capture` transactions.
+   * @param options.params.success - Filter by success field.
    * @return {Pager<Transaction>} A list of the site's transactions.
    */
   listTransactions(params?: object): Pager<Transaction>;
@@ -8129,6 +8129,7 @@ export class ApiError {
 export class ResponseError extends ApiError { }
 export class ServerError extends ResponseError { }
 export class InternalServerError extends ServerError { }
+export class ServiceNotAvailableError extends InternalServerError { }
 export class BadGatewayError extends ServerError { }
 export class ServiceUnavailableError extends ServerError { }
 export class TimeoutError extends ServerError { }
@@ -8180,6 +8181,7 @@ export interface Errors {
   ResponseError: ResponseError;
   ServerError: ServerError;
   InternalServerError: InternalServerError;
+  ServiceNotAvailableError: ServiceNotAvailableError;
   BadGatewayError: BadGatewayError;
   ServiceUnavailableError: ServiceUnavailableError;
   TimeoutError: TimeoutError;
